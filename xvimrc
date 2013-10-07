@@ -1,0 +1,150 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" XVim config.
+" Author: 邓锦龙(BronteDeng)
+" Note: This file contains base keymap and xvim cmd keymap.
+"  |menucmd| will assign first responder. |xccmd| will not. 
+"  Unfrequently used keymap is indent right.
+" Data: Wed Sep 25 16:29:57 CST 2013
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" not supported
+"let mapleader = ","
+"""""""""""""""""""""""""""""""""""""""""
+" assistant editor and jump between Frame
+"""""""""""""""""""""""""""""""""""""""""
+" show assistant editor(then add is enable)
+" show standard editor to close assistant editor
+map ,sa :xccmd changeToGeniusEditor<CR>
+" add new assistant editor
+    "map ,aa :xccmd addAssistantEditor<CR>
+" del one assistant editor 
+    "map ,da :xccmd removeAssistantEditor<CR>
+    
+" move between windows
+map <C-j> <C-w>j<CR> 
+map <C-k> <C-w>k<CR>
+map <C-h> <C-w>h<CR>
+map <C-l> <C-w>l<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tab
+" note: if tabprevious and tabnext lost editor focus,
+"       try :xccmd.
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tab new
+map ,tn :xccmd newTab<CR>
+" tab close
+"map ,tc :xccmd closeCurrentTab<CR>
+map ,tc :tabclose<CR>
+" tab pre
+"map ,ti :xccmd selectPreviousTab<CR>
+map ,ti :tabprevious<CR>
+" tab next
+"map ,to :xccmd selectNextTab<CR>
+map ,to :tabnext<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" View note: standard editor shortkey is convenient
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Code Snippet Library
+map ,cs :menucmd Title:Show Code Snippet Library<CR>
+" File Template Library
+    map ,ft :menucmd Title:Show File Template Library<CR>
+" Media Library
+    map ,ml :menucmd Title:Show Media Library<CR>
+" (Quick) help Inspector
+    map ,hi :menucmd Title:Show Quick Help Inspector<CR>
+" File inspector
+    map ,fi :menucmd Title:Show File Inspector<CR>
+
+" toggle navigator, debug area, utilities, ToolBar  
+" l-left, b-bottom, r-right, t-top or toolbar
+map ,tl :xccmd toggleNavigatorsVisibility<CR>
+map ,tb :xccmd toggleDebuggerVisibility<CR>
+map ,tr :xccmd toggleUtilitiesVisibility<CR>
+map ,tt :xccmd toggleToolbarShown<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Navigate
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" dc-debug console
+map ,dc :menucmd Title:Activate Console<CR>
+    "map , :menucmd Title:Reveal in Project Navigator<CR>
+    "map , :menucmd Title:Reveal in Symbol Navigator<CR>
+    "map , :menucmd Title:Reveal in Debug Navigator<CR>
+    
+" open current file in selected editor
+    "map ,oi :menucmd Title:Open in…<CR>
+" ctrl+i/o maybe better
+map ,f :xccmd goForwardInHistoryByCommand<CR>
+map ,b :xccmd goBackInHistoryByCommand<CR>
+    "map ,jd :menucmd Title:Jump to Definition<CR> " vim cmd:gd
+    map ,jn :menucmd Title:Jump to Next Issue<CR>
+    "map ,ni :menucmd Title:Fix Next Issue<CR>
+    map ,jp :menucmd Title:Jump to Previous Issue<CR>
+    "map ,pi :menucmd Title:Fix Previous Issue<CR>
+    
+" switch between .h/.m
+map ,n :xccmd jumpToNextCounterpart<CR>  
+    "map ,np :xccmd selectNextPlaceholder<CR> " use tab
+    map ,pp :xccmd selectPreviousPlaceholder<CR>
+
+" reveal file or symbol
+map ,pr :xccmd revealInProjectNavigator<CR>
+map ,sr :xccmd revealInSymbolNavigator<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editor
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show Completions
+"map ,c :xccmd complete<CR>
+" Edit all in scope
+"map ,ea :xccmd toggleTokenizedEditing<CR>
+
+" Fold
+nmap ,zf :xccmd fold<CR>
+" <S-SPACE> not work
+nmap ,zu :xccmd unfold<CR> 
+        map ,fa :xccmd foldAllMethods<CR>
+        map ,ua :xccmd unfoldAllMethods<CR>
+        map ,fc :xccmd foldAllComments<CR>
+        map ,uc :xccmd unfoldAllComments<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Product 
+""""""""""""""""""""""""""""""""""""""""""""""""""
+map ,r  :run<CR>
+map ,bp  :menucmd Title:Build<CR>
+map ,cp  :menucmd Title:Clean<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Miscellaneous (杂项)
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"quick save and quit
+map ,w :w<CR>
+"map ,q :q<CR>  quit program
+set ignorecase
+
+map ,s vaw:xccmd findSelectedTextInWorkspace<CR>
+map ,sc :xccmd commitCommand<CR>
+
+"Documentation and API Reference    
+"map ,doc :xccmd showDeveloperDocumentation<CR>
+"show quick help for current word
+map ,h :xhelp<CR>
+map ,sh :xccmd searchDocumentationForSelectedText<CR>
+
+" Filter file (view menus achieve the goal too)
+map ,fn :menucmd Title:Filter in Navigator<CR>
+map ,fl :menucmd Title:Filter in Library<CR>
+
+" Open Quickly
+map ,o  :xccmd openQuickly<CR>
+" Close Window
+map ,cw  :xccmd performClose<CR>
+" close current file
+map ,q  :xccmd closeDocument<CR>
+" show in Finder
+map ,in  :xccmd showInFinder<CR>
+" create snapshot and restore
+map ,ss  :xccmd createSnapshot<CR>
+map ,rs  :xccmd restoreSnapshot<CR>
+" cmd+L, go to line
+map ,l  :xccmd openQuicklyScoped<CR>
