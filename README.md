@@ -1,3 +1,8 @@
+this is regrouped by longlingxiu(aka cesc) , it contains xvim project and xvimrc if you want add XVim plugin into xcode 
+,you should close your xcode totally , then open XVim  and Build it as the common the way ,next enter the folder of XVimBindleKey  by terminal ,then  type in cp -R xvimrc ~/.xvimrc 
+, well get it done  ,start the xcode , you'll see the change. gool luck
+
+
 # XVim
   XVim is a Vim plugin for Xcode. The plugin intends to offer a compelling Vim experience without the need to give up any Xcode features.
 
